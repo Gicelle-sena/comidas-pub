@@ -3,7 +3,10 @@ import routes from "./Routes/index.js";
 
 const app = express();
 
-const port = 3000
+/*app.use(express.urlencoded({extended: true}))*/
+app.use(express.json())
+
+const port = process.env.PORT || 3000
 
 app.listen(port,() => console.log(`Servidor funcionando na porta ${port}`))
 

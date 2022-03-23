@@ -1,85 +1,76 @@
-import bdComidas from '../model/comidabd.js';
+/*import { bdComidas } from "../model/comidabd.js";
+import Metodoscomidas from "../DAO/metodoscomidas.js";
+import { verificaDadosComidas } from "../services/verificaDadosValidos.js";*/
+import metodoscomidas from "../DAO/Metodoscomidas.js";
+
 
 class ComidasController {
-    static criarTabela(req, res){
-        const tabela_comidas = `
-        CREATE TABLE IF NOT EXISTS comidas (
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            titulo VARCHAR (50),
-            descricao VARCHAR (50),
-            preco FLOAT
-        )
-       `;
+  //Método Create --------------------
+    static criarTabela(req, res) {
+    metodoscomidas
+      .criarTabela()
+      .then((response) => res.send(response))
+      .catch((response) => res.send(response));
+  }
 
-       bdComidas.run(tabela_comidas, (e) => {
-           if(e){
-               res.send("Erro ao criar tabela", e.message)
-             }
-             else {
-                 res.send("Tabela criada com sucesso")
-             }
-       }) 
-    }
+  //Método Create --------------------
+   static inserirComida(req, res) {
+    /*const comida = new Promise((resolve, reject) => {
+      resolve([req.body.id, req.body.titulo, req.body.descricao, req.body.preco]);
 
-   static async salvarComida(req, res) {
-        try{
-            const comida = await new Promise((resolve, reject) => {
-            
-            const result = {
-                titulo: req.body.titulo,
-                descricao: req.body.descricao,
-                preco: parseFloat(req.body.preco)
-            }
-            resolve(result)
-            })
-        
-            const infoComidas = `
-            INSERT INTO comidas (titulo, descricao, preco) VALUES 
-            ('${comida.titulo}', '${comida.descricao}', ${comida.preco})
-            `;
+      reject("Não foi possivel pegar as informações da comida");
+    });*/
 
-            bdComidas.run(infoComidas, (e) => {
-            if (!e) {
-                res.status(201)
-                res.send(
-                `Dados da comida 
-                titulo: ${comida.titulo} 
-                descricao: ${comida.descricao}
-                preco: ${comida.preco}
-                inseridos com sucesso`
-                );
-            }
-            });
-        } catch (error){
-            res.status(500)
-            res.send("Erro ao salvar dados das Comidas")
-        }
-    }
+    const comida = [req.body.titulo, req.body.descricao, req.body.preco]
 
-    static async buscarTodasComidas(req, res){
-        const scriptSelect = `SELECT * FROM comidas`
-        try{
-           const results = await new Promise((resolve, reject) => {
-              return (
-                 bdComidas.all(scriptSelect, (e, rows) => {
-                    if(!e){
-                       resolve(rows)
-                    } else {
-                       reject("Problema ao obter dados")
-                    }
-                 })
-              )
-           })
-  
-           res.status(200).json(results)
-  
-        } catch(error) {
-           res.status(500).json(error)
-        }
-     }
+    console.log(comida)
+    metodoscomidas
+      .inserirComida(comida)
+      .then((response) => res.send(response))
+      .catch((response) => res.send(response));
+  }
 
+  //Método Read ----------------------
+    static async buscarComidas(req, res) {
+    metodoscomidas
+      .buscarComidas()
+      .then((response) => res.send(response))
+      .catch((response) => res.send(response));
+  }
+
+  //Método Read --------------------
+    static bucarComidaPorId(req, res) {
+    const id = req.params.id;
+    metodoscomidas
+      .bucarComidaPorId(id)
+      .then((response) => res.send(response))
+      .catch((response) => res.send(response));
+  }
+
+  //Método Delete --------------------
+    static deletarComida(req, res) {
+    const id = req.params.id;
+    metodoscomidas
+      .deletarComida(id)
+      .then((response) => res.send(response))
+      .catch((response) => res.send(response));
+  }
+
+  //Método Update --------------------
+   static async atualizarComida(req, res) {
+    const novaComida = await new Promise((resolve, reject) => {
+      resolve([
+        req.params.id,
+        req.body.titulo,
+        req.body.descricao,
+        parseFloat(req.body.preco),
+      ]);
+    });
+    metodoscomidas
+      .atualizarComida(...novaComida)
+      .then((response) => res.send(response))
+      .catch((response) => res.send(response));
+  }
 }
-
-
 
 export default ComidasController;

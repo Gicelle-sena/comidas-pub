@@ -4,8 +4,8 @@ const router = Router();
 
 router.post("/criarTabela", ComidasController.criarTabela)
 
-router.get("/comidas", ComidasController.buscarTodasComidas)
+router.get("/comidas", ComidasController.buscarComidas)
 
-router.post("/comidas", ComidasController.salvarComida)
+router.post("/comidas", ComidasController.inserirComida)
 
 export default router;
