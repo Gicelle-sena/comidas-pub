@@ -15,11 +15,6 @@ class ComidasController {
 
   //Método Create --------------------
    static inserirComida(req, res) {
-    /*const comida = new Promise((resolve, reject) => {
-      resolve([req.body.id, req.body.titulo, req.body.descricao, req.body.preco]);
-
-      reject("Não foi possivel pegar as informações da comida");
-    });*/
 
     const comida = [req.body.titulo, req.body.descricao, req.body.preco]
 
@@ -58,16 +53,10 @@ class ComidasController {
 
   //Método Update --------------------
    static async atualizarComida(req, res) {
-    const novaComida = await new Promise((resolve, reject) => {
-      resolve([
-        req.params.id,
-        req.body.titulo,
-        req.body.descricao,
-        parseFloat(req.body.preco),
-      ]);
-    });
+    const comida = [req.body.titulo, req.body.descricao, req.body.preco, req.params.id]
+    console.log(comida)
     metodoscomidas
-      .atualizarComida(...novaComida)
+      .atualizarComida(comida)
       .then((response) => res.send(response))
       .catch((response) => res.send(response));
   }

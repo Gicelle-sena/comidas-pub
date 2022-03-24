@@ -114,10 +114,10 @@ class MetodosComidas {
   }
 
   //Método Update --------------------
-  static async atualizarComida(id, novoTitutlo, novaDescricao, novoPreco) {
+  static async atualizarComida(comida) {
     try {
       return new Promise((resolve, reject) => {
-        const scriptUpdate = `UPDATE comidas SET nome='${novoTitutlo}', tipo='${novaDescricao}', valor='${novoPreco}' WHERE id = ${id}`;
+        const scriptUpdate = `UPDATE comidas SET titulo='${comida[0]}', descricao='${comida[1]}', preco="${comida[2]}" WHERE id='${comida[3]}'`;
         bdComidas.run(scriptUpdate, (e) => {
           if (!e) {
             resolve("Registro da comida atualizado com sucesso");
