@@ -46,8 +46,8 @@ npm start
 	PUT - Atualizar um registro http://localhost:3000/atualizar/:id
 	DELETE - Deletar um registro http://localhost:3000/deletar/:id
   
+    <h2> RESPONSE: <h2>
    ```
-   <h2> RESPONSE: <h2>
   
   [
 	{
