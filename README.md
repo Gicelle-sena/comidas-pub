@@ -42,7 +42,7 @@ npm start
 # Rotas da API
  ```
     GET - Buscar todas as comidas http://localhost:3000/comidasBuscar/:id
-    GET - Buscar apenas um funcionário por ID http://localhost:3000/comidas/:id
+    GET - Buscar apenas uma comida por ID http://localhost:3000/comidas/:id
 	POST - Salvar/Criar uma comida no banco http://localhost:3000/comidas/:id
 	PUT - Atualizar um registro http://localhost:3000/atualizar/:id
 	DELETE - Deletar um registro http://localhost:3000/deletar/:id
