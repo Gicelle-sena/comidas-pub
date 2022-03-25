@@ -40,13 +40,16 @@ npm start
 **Observação:** Essa aplicação será executada por padrão na porta 3000 do seu localHost, caso essa porta esteja sendo utilizada por outra aplicação basta mudar o valor da variável 'port' do arquivo 'app.js' para um valor de porta disponível em seu sistema.
 
 # Rotas da API
+ ```
        GET - Buscar todas as comidas http://localhost:3000/comidasBuscar/:id
  	GET - Buscar apenas um funcionário por ID http://localhost:3000/comidas/:id
 	POST - Salvar/Criar uma comida no banco http://localhost:3000/comidas/:id
 	PUT - Atualizar um registro http://localhost:3000/atualizar/:id
 	DELETE - Deletar um registro http://localhost:3000/deletar/:id
+   ```
   
     <h2> RESPONSE: <h2>
+    
    ```
   
   [
